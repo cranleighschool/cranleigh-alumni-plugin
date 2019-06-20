@@ -31,26 +31,26 @@ class CustomPostType {
 	 * @var array
 	 */
 	private $supports = [
-		"thumbnail",
-		"title",
-		"editor",
+		'thumbnail',
+		'title',
+		'editor',
 	];
 
 	/**
 	 * @var array
 	 */
 	private $options = [
-		"menu_position" => 27,
-		"menu_icon"     => "dashicons-visibility",
-		"label" => "Alumni",
-		"has_archive" => true
+		'menu_position' => 27,
+		'menu_icon'     => 'dashicons-visibility',
+		'label'         => 'Alumni',
+		'has_archive'   => true,
 	];
 
 	/**
 	 * @var array
 	 */
 	public $labels = [
-		"name" => "Alumni",
+		'name' => 'Alumni',
 
 	];
 
@@ -64,12 +64,12 @@ class CustomPostType {
 	 */
 	function __construct( string $post_key, array $options = [], array $labels = [] ) {
 
-		//$this->names = [];
+		// $this->names = [];
 		$this->setPostTypeKey( $post_key );
 
 		$this->labels = array_merge( $this->labels, $labels );
 
-		$this->options[ 'supports' ] = $this->supports;
+		$this->options['supports'] = $this->supports;
 
 		$this->options = array_merge( $options, $this->options );
 
@@ -79,8 +79,8 @@ class CustomPostType {
 	 *
 	 */
 	public function registerMetaBoxes() {
-		$metabox = new MetaBoxes($this->post_type_key);
-		add_filter('rwmb_meta_boxes', [$metabox, 'register']);
+		$metabox = new MetaBoxes( $this->post_type_key );
+		add_filter( 'rwmb_meta_boxes', [ $metabox, 'register' ] );
 	}
 
 
@@ -89,7 +89,7 @@ class CustomPostType {
 	 */
 	public function register() {
 
-		if (!empty($this->names)) {
+		if ( ! empty( $this->names ) ) {
 			$names = $this->names;
 		} else {
 			$names = $this->post_type_key;
@@ -99,7 +99,6 @@ class CustomPostType {
 		$this->setTaxonomies();
 		$this->registerMetaBoxes();
 
-
 	}
 
 	/**
@@ -107,7 +106,7 @@ class CustomPostType {
 	 */
 	private function setPostTypeKey( string $key ) {
 
-		$key                 = str_replace( " ", "-", $key );
+		$key                 = str_replace( ' ', '-', $key );
 		$this->post_type_key = strtolower( $key );
 	}
 

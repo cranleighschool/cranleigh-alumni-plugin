@@ -20,7 +20,7 @@ class Plugin extends BaseController {
 	public function __construct() {
 		parent::__construct();
 		$this->runUpdateChecker( 'cranleigh-alumni-plugin' );
-		add_filter('single_template', array($this, 'limit_access'));
+		add_filter( 'single_template', array( $this, 'limit_access' ) );
 	}
 
 	/**
@@ -28,10 +28,10 @@ class Plugin extends BaseController {
 	 *
 	 * @return mixed
 	 */
-	public function limit_access($thing) {
+	public function limit_access( $thing ) {
 
-		if (get_current_user_id() !== 1 && get_post_type() == "alumni") {
-			wp_redirect("https://www.google.co.uk/search?q=".urlencode(get_the_title()));
+		if ( get_current_user_id() !== 1 && get_post_type() == 'alumni' ) {
+			wp_redirect( 'https://www.google.co.uk/search?q=' . urlencode( get_the_title() ) );
 			exit();
 		} else {
 			return $thing;
@@ -44,7 +44,7 @@ class Plugin extends BaseController {
 		// TODO: Implement setupPlugin() method.
 
 		// TODO: Custom Post Type
-		$this->createCustomPostType("Alumni")->register();
+		$this->createCustomPostType( 'Alumni' )->register();
 	}
 
 	/**
